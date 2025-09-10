@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Login - Confidencialidad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:0;background:#0f172a;color:#e2e8f0;display:grid;place-items:center;height:100dvh}
+    .card{background:#111827;border:1px solid #1f2937;border-radius:14px;padding:28px;max-width:420px;width:92%}
+    h2{margin:0 0 12px}
+    label{display:block;margin:10px 0 6px}
+    input{width:100%;padding:10px;border-radius:10px;border:1px solid #334155;background:#0b1220;color:#e2e8f0}
+    button{margin-top:14px;width:100%;padding:12px;border:0;border-radius:12px;background:#2563eb;color:white;font-weight:600;cursor:pointer}
+    small{opacity:.8}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Iniciar sesión</h2>
+    <p><small>Demo: usuario <b>josue</b> y una clave con ≥8 caracteres.</small></p>
+
+    <label>Usuario</label>
+    <input id="usuario" autocomplete="username" placeholder="josue" />
+
+    <label>Contraseña</label>
+    <input id="clave" type="password" autocomplete="current-password" placeholder="mínimo 8 caracteres" />
+
+    <button onclick="login()">Entrar</button>
+    <p id="msg"></p>
+  </div>
+
+<script>
+function login(){
+  const u = document.getElementById('usuario').value.trim();
+  const p = document.getElementById('clave').value;
+
+  // Reglas mínimas (confidencialidad básica)
+  if(u.length === 0){ return setMsg('Escribe el usuario.'); }
+  if(p.length < 8){ return setMsg('La contraseña debe tener al menos 8 caracteres.'); }
+  if(!/[A-Za-z]/.test(p) || !/\d/.test(p)){
+    return setMsg('La contraseña debe tener letras y números.');
+  }
+
+  // “Sesión” simulada (solo demo)
+  localStorage.setItem('sesion_demo', JSON.stringify({user:u, ts:Date.now()}));
+  window.location.href = 'protegido.html';
+}
+
+function setMsg(t){ document.getElementById('msg').textContent = '⚠️ ' + t; }
+</script>
+</body>
+</html>
