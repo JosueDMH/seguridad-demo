@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Zona protegida - Integridad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:0;background:#0f172a;color:#e2e8f0}
+    header,main{max-width:900px;margin:auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between}
+    .card{background:#111827;border:1px solid #1f2937;border-radius:14px;padding:18px;margin:14px 0}
+    textarea{width:100%;min-height:120px;background:#0b1220;color:#e2e8f0;border:1px solid #334155;border-radius:10px;padding:10px}
+    button{padding:10px 14px;border:0;border-radius:10px;background:#2563eb;color:white;font-weight:600;cursor:pointer}
+    code,pre{background:#0b1220;padding:10px;border-radius:10px;display:block;overflow:auto}
+    .ok{color:#10b981}.bad{color:#f43f5e}
+  </style>
+</head>
+<body>
+<header>
+  <h2>✅ Zona protegida</h2>
+  <div>
+    <button onclick="salir()">Cerrar sesión</button>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <h3>Confidencialidad</h3>
+    <p>Solo ves esta página si pasaste por login (sesión simulada en <code>localStorage</code>).</p>
+  </div>
+
+  <div class="card">
+    <h3>Integridad de datos (SHA-256)</h3>
+    <p>Puedes calcular el hash de un <b>texto</b> o de un <b>archivo</b>. Si el contenido cambia, el hash cambia.</p>
+
+    <h4>1) Texto</h4>
+    <textarea id="texto">Información confidencial de ejemplo.</textarea>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <button onclick="hashTexto()">Calcular hash</button>
+      <button onclick="comparar()">Comparar con hash guardado</button>
+      <button onclick="guardarHash()">Guardar hash actual</button>
+    </div>
+    <p><b>Hash actual:</b></p>
+    <pre id="hashTexto"></pre>
+    <p><b>Hash guardado:</b></p>
+    <pre id="hashGuardado"></pre>
+    <p id="resultado"></p>
+
+    <hr style="border-color:#1f2937">
+
+    <h4>2) Archivo</h4>
+    <input type="file" id="archivo" />
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <button onclick="hashArchivo()">Calcular hash del archivo</button>
+    </div>
+    <p><b>Hash del archivo:</b></p>
+    <pre id="hashFile"></pre>
+  </div>
+</main>
+
+<script>
+// --- Protección de acceso (confidencialidad) ---
+(function(){
+  const s = localStorage.getItem('sesion_demo');
+  if(!s){ window.location.href='index.html'; }
+})();
+
+function salir(){
+  localStorage.removeItem('sesion_demo');
+  location.href='index.html';
+}
+
+// --- Utilidades SHA-256 con Web Crypto ---
+async function sha256Hex(buff){
+  const digest = await crypto.subtle.digest('SHA-256', buff);
+  return [...new Uint8Array(digest)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+// Texto
+async function hashTexto(){
+  const txt = document.getElementById('texto').value;
+  const enc = new TextEncoder().encode(txt);
+  const h = await sha256Hex(enc);
+  document.getElementById('hashTexto').textContent = h;
+  return h;
+}
+
+function guardarHash(){
+  const h = document.getElementById('hashTexto').textContent.trim();
+  if(!h){ return setRes('Calcula primero el hash del texto.', false); }
+  localStorage.setItem('hash_guardado_demo', h);
+  document.getElementById('hashGuardado').textContent = h;
+  setRes('Hash guardado. Integridad de referencia creada.', true);
+}
+
+async function comparar(){
+  const guardado = localStorage.getItem('hash_guardado_demo');
+  if(!guardado){ return setRes('No hay hash guardado. Presiona "Guardar hash actual".', false); }
+  const actual = await hashTexto();
+  document.getElementById('hashGuardado').textContent = guardado;
+  const ok = (actual === guardado);
+  setRes(ok ? 'Integridad OK: el contenido NO cambió.' : 'Integridad COMPROMETIDA: el contenido cambió.', ok);
+}
+
+function setRes(msg, ok){
+  const el = document.getElementById('resultado');
+  el.textContent = msg;
+  el.className = ok ? 'ok' : 'bad';
+}
+
+// Archivo
+async function hashArchivo(){
+  const f = document.getElementById('archivo').files[0];
+  if(!f) return;
+  const buff = await f.arrayBuffer();
+  const h = await sha256Hex(buff);
+  document.getElementById('hashFile').textContent = h + '\n(' + f.name + ', ' + f.size + ' bytes)';
+}
+</script>
+</body>
+</html>
