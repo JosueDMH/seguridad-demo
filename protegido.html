@@ -1,121 +1,135 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <title>Zona protegida - Integridad</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Rate - Dashboard Exclusivo</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💎</text></svg>">
   <style>
-    body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:0;background:#0f172a;color:#e2e8f0}
-    header,main{max-width:900px;margin:auto;padding:20px}
-    header{display:flex;align-items:center;justify-content:space-between}
-    .card{background:#111827;border:1px solid #1f2937;border-radius:14px;padding:18px;margin:14px 0}
-    textarea{width:100%;min-height:120px;background:#0b1220;color:#e2e8f0;border:1px solid #334155;border-radius:10px;padding:10px}
-    button{padding:10px 14px;border:0;border-radius:10px;background:#2563eb;color:white;font-weight:600;cursor:pointer}
-    code,pre{background:#0b1220;padding:10px;border-radius:10px;display:block;overflow:auto}
-    .ok{color:#10b981}.bad{color:#f43f5e}
-  </style>
-</head>
-<body>
-<header>
-  <h2>✅ Zona protegida</h2>
-  <div>
-    <button onclick="salir()">Cerrar sesión</button>
-  </div>
-</header>
-
-<main>
-  <div class="card">
-    <h3>Confidencialidad</h3>
-    <p>Solo ves esta página si pasaste por login (sesión simulada en <code>localStorage</code>).</p>
-  </div>
-
-  <div class="card">
-    <h3>Integridad de datos (SHA-256)</h3>
-    <p>Puedes calcular el hash de un <b>texto</b> o de un <b>archivo</b>. Si el contenido cambia, el hash cambia.</p>
-
-    <h4>1) Texto</h4>
-    <textarea id="texto">Información confidencial de ejemplo.</textarea>
-    <div style="display:flex;gap:8px;margin-top:8px">
-      <button onclick="hashTexto()">Calcular hash</button>
-      <button onclick="comparar()">Comparar con hash guardado</button>
-      <button onclick="guardarHash()">Guardar hash actual</button>
-    </div>
-    <p><b>Hash actual:</b></p>
-    <pre id="hashTexto"></pre>
-    <p><b>Hash guardado:</b></p>
-    <pre id="hashGuardado"></pre>
-    <p id="resultado"></p>
-
-    <hr style="border-color:#1f2937">
-
-    <h4>2) Archivo</h4>
-    <input type="file" id="archivo" />
-    <div style="display:flex;gap:8px;margin-top:8px">
-      <button onclick="hashArchivo()">Calcular hash del archivo</button>
-    </div>
-    <p><b>Hash del archivo:</b></p>
-    <pre id="hashFile"></pre>
-  </div>
-</main>
-
-<script>
-// --- Protección de acceso (confidencialidad) ---
-(function(){
-  const s = localStorage.getItem('sesion_demo');
-  if(!s){ window.location.href='index.html'; }
-})();
-
-function salir(){
-  localStorage.removeItem('sesion_demo');
-  location.href='index.html';
-}
-
-// --- Utilidades SHA-256 con Web Crypto ---
-async function sha256Hex(buff){
-  const digest = await crypto.subtle.digest('SHA-256', buff);
-  return [...new Uint8Array(digest)].map(b=>b.toString(16).padStart(2,'0')).join('');
-}
-
-// Texto
-async function hashTexto(){
-  const txt = document.getElementById('texto').value;
-  const enc = new TextEncoder().encode(txt);
-  const h = await sha256Hex(enc);
-  document.getElementById('hashTexto').textContent = h;
-  return h;
-}
-
-function guardarHash(){
-  const h = document.getElementById('hashTexto').textContent.trim();
-  if(!h){ return setRes('Calcula primero el hash del texto.', false); }
-  localStorage.setItem('hash_guardado_demo', h);
-  document.getElementById('hashGuardado').textContent = h;
-  setRes('Hash guardado. Integridad de referencia creada.', true);
-}
-
-async function comparar(){
-  const guardado = localStorage.getItem('hash_guardado_demo');
-  if(!guardado){ return setRes('No hay hash guardado. Presiona "Guardar hash actual".', false); }
-  const actual = await hashTexto();
-  document.getElementById('hashGuardado').textContent = guardado;
-  const ok = (actual === guardado);
-  setRes(ok ? 'Integridad OK: el contenido NO cambió.' : 'Integridad COMPROMETIDA: el contenido cambió.', ok);
-}
-
-function setRes(msg, ok){
-  const el = document.getElementById('resultado');
-  el.textContent = msg;
-  el.className = ok ? 'ok' : 'bad';
-}
-
-// Archivo
-async function hashArchivo(){
-  const f = document.getElementById('archivo').files[0];
-  if(!f) return;
-  const buff = await f.arrayBuffer();
-  const h = await sha256Hex(buff);
-  document.getElementById('hashFile').textContent = h + '\n(' + f.name + ', ' + f.size + ' bytes)';
-}
-</script>
-</body>
-</html>
+    * {
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary-gold: #d4af37;
+      --primary-dark-gold: #b8941f;
+      --accent-platinum: #e5e4e2;
+      --bg-dark: #0a0a0a;
+      --bg-card: #1a1a1a;
+      --border-gold: #d4af3740;
+      --text-light: #f5f5f5;
+      --text-muted: #a1a1a1;
+      --shadow-gold: rgba(212, 175, 55, 0.3);
+      --success-color: #10b981;
+      --error-color: #ef4444;
+    }
+    
+    body {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 50%, #0d1117 100%);
+      color: var(--text-light);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Efectos de fondo animados */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 60% 40%, rgba(229, 228, 226, 0.05) 0%, transparent 50%);
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      background: var(--bg-card);
+      border: 2px solid var(--border-gold);
+      border-radius: 20px;
+      padding: 24px 32px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      animation: fadeInDown 1s ease-out;
+    }
+    
+    .brand-section {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo-mini {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark-gold));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-right: 16px;
+      box-shadow: 0 4px 16px var(--shadow-gold);
+    }
+    
+    .header-title {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-gold), var(--accent-platinum));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .welcome-badge {
+      background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark-gold));
+      color: var(--bg-dark);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+    
+    .user-section {
+      text-align: right;
+    }
+    
+    .logout-btn {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 14px;
+    }
+    
+    .logout-btn:hover {
+      transform
