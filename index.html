@@ -20,8 +20,6 @@
       --text-light: #f5f5f5;
       --text-muted: #a1a1a1;
       --shadow-gold: rgba(212, 175, 55, 0.3);
-      --success-color: #10b981;
-      --error-color: #ef4444;
     }
     
     body {
@@ -35,6 +33,7 @@
       overflow-x: hidden;
     }
     
+    /* Efectos de fondo animados */
     body::before {
       content: '';
       position: absolute;
@@ -250,7 +249,7 @@
     }
     
     .form-input.error {
-      border-color: var(--error-color);
+      border-color: #ef4444;
       box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
     }
     
@@ -325,18 +324,17 @@
       font-weight: 500;
       text-align: center;
       min-height: 20px;
-      transition: all 0.3s ease;
     }
     
     .message.error {
       background: rgba(239, 68, 68, 0.1);
-      border: 1px solid var(--error-color);
+      border: 1px solid #ef4444;
       color: #fca5a5;
     }
     
     .message.success {
       background: rgba(16, 185, 129, 0.1);
-      border: 1px solid var(--success-color);
+      border: 1px solid #10b981;
       color: #6ee7b7;
     }
     
@@ -374,9 +372,9 @@
       border-radius: 2px;
     }
     
-    .strength-weak { background: var(--error-color); width: 25%; }
+    .strength-weak { background: #ef4444; width: 25%; }
     .strength-fair { background: #f59e0b; width: 50%; }
-    .strength-good { background: var(--success-color); width: 75%; }
+    .strength-good { background: #10b981; width: 75%; }
     .strength-strong { background: var(--primary-gold); width: 100%; }
     
     .strength-text {
@@ -557,13 +555,12 @@
         // Éxito
         showMessage('🎉 ¡Acceso premium concedido! Redirigiendo al portal exclusivo...', 'success');
         
-        // Guardar sesión premium en localStorage (persistente)
+        // Guardar sesión premium
         savePremiumSession(username);
         
         // Redireccionar después de un breve delay
         setTimeout(() => {
-          // Cambiar a protegido.html en la misma ventana
-          window.location.replace('protegido.html');
+          window.location.href = 'protegido.html';
         }, 2000);
         
       } catch (error) {
@@ -608,11 +605,11 @@
           } else {
             reject(new Error('🚫 Credenciales incorrectas. Verifica tu acceso premium.'));
           }
-        }, 1500);
+        }, 1500); // Simular autenticación premium más lenta
       });
     }
     
-    // Guardar sesión premium en localStorage
+    // Guardar sesión premium
     function savePremiumSession(username) {
       const premiumSession = {
         usuario: username,
@@ -622,13 +619,7 @@
         features: ['premium-dashboard', 'advanced-analytics', 'priority-support']
       };
       
-      try {
-        localStorage.setItem('premium_rate_session', JSON.stringify(premiumSession));
-        // También en sessionStorage como respaldo
-        sessionStorage.setItem('premium_rate_session', JSON.stringify(premiumSession));
-      } catch (error) {
-        console.error('Error al guardar la sesión:', error);
-      }
+      sessionStorage.setItem('premium_rate_session', JSON.stringify(premiumSession));
     }
     
     // Verificar fortaleza de contraseña
@@ -712,53 +703,8 @@
       }
     }
     
-    // Función para mostrar notificaciones temporales
-    function showNotification(message, type) {
-      const notification = document.createElement('div');
-      notification.className = `message ${type}`;
-      notification.textContent = message;
-      notification.style.position = 'fixed';
-      notification.style.top = '20px';
-      notification.style.right = '20px';
-      notification.style.zIndex = '1000';
-      notification.style.minWidth = '300px';
-      notification.style.animation = 'slideInRight 0.3s ease-out';
-      
-      document.body.appendChild(notification);
-      
-      setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.3s ease-out';
-        setTimeout(() => {
-          if (document.body.contains(notification)) {
-            document.body.removeChild(notification);
-          }
-        }, 300);
-      }, 3000);
-    }
-    
     // Inicialización
     document.addEventListener('DOMContentLoaded', function() {
-      // Verificar si ya hay una sesión activa
-      try {
-        const session = localStorage.getItem('premium_rate_session') || sessionStorage.getItem('premium_rate_session');
-        if (session) {
-          const sessionData = JSON.parse(session);
-          if (Date.now() < sessionData.expiresAt) {
-            showNotification('Ya tienes una sesión activa. Redirigiendo...', 'success');
-            setTimeout(() => {
-              window.location.replace('protegido.html');
-            }, 1500);
-            return;
-          } else {
-            // Sesión expirada, limpiar
-            localStorage.removeItem('premium_rate_session');
-            sessionStorage.removeItem('premium_rate_session');
-          }
-        }
-      } catch (error) {
-        console.log('No hay sesión previa o error al verificar sesión');
-      }
-      
       usernameInput.focus();
       
       // Efecto de escritura en el título
@@ -775,21 +721,6 @@
         }
       }, 100);
     });
-    
-    // Agregar estilos para las animaciones de notificación
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes slideInRight {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-      }
-      
-      @keyframes slideOutRight {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(100%); opacity: 0; }
-      }
-    `;
-    document.head.appendChild(style);
   </script>
 </body>
 </html>
