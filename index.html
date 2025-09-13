@@ -1,537 +1,616 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premium Rate - Dashboard Exclusivo</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💎</text></svg>">
-  <style>
+<! Doctype html>
+<html lang = "es">
+<Evista>
+  <meta charset = "utf-8">
+  <Meta name = "Viewport" content = "width = dispositivo-width, inicial-escala = 1.0">
+  <title> Premium Tasa - Dashboard Excusivo </title>
+  <Link rel = "icon" href = "datos: imagen/svg+xml, <svg xmlns = 'http: //www.w3.org/2000/svg' viewbox = '0 0 100 100'> <text y = '.
+  <estilo>
     * {
-      box-sizing: border-box;
+      dimensionamiento de la caja: border-box;
     }
     
-    :root {
-      --primary-gold: #d4af37;
-      --primary-dark-gold: #b8941f;
-      --accent-platinum: #e5e4e2;
-      --bg-dark: #0a0a0a;
+    :raíz {
+      --Primary-Gold: #D4AF37;
+      --Primary-Dark-Gold: #B8941F;
+      --Ccent-Platinum: #E5E4E2;
+      --BG-Dark: #0a0a0a;
       --bg-card: #1a1a1a;
-      --border-gold: #d4af3740;
-      --text-light: #f5f5f5;
-      --text-muted: #a1a1a1;
-      --shadow-gold: rgba(212, 175, 55, 0.3);
-      --success-green: #10b981;
-      --error-red: #ef4444;
+      --border-oro: #d4af3740;
+      --Text-Light: #F5F5F5;
+      --Text-MUTUD: #A1A1A1;
+      --Shadow-Gold: RGBA (212, 175, 55, 0.3);
+      --suCess-Green: #10b981;
+      --Error-Red: #EF4444;
     }
     
-    body {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 50%, #0d1117 100%);
-      color: var(--text-light);
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
+    cuerpo {
+      Font-Family: 'SF Pro Display', -apple-System, BlinkMacSystemFont, 'Segoe UI', Roboto, Sans-Serif;
+      margen: 0;
+      relleno: 0;
+      Antecedentes: gradiente lineal (135deg, var (-bg-dark) 0%, #1a1a1a 50%, #0d1117 100%);
+      color: var (-texto-luz);
+      Min-altura: 100VH;
+      Posición: relativo;
+      desbordamiento-x: oculto;
     }
     
-    /* Efectos de fondo animados */
-    body::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 60% 40%, rgba(229, 228, 226, 0.05) 0%, transparent 50%);
-      z-index: 0;
-      pointer-events: none;
+    / * Efectos de Fondo Animados */
+    cuerpo :: antes {
+      contenido: '';
+      Posición: Absoluto;
+      arriba: 0;
+      Izquierda: 0;
+      Derecha: 0;
+      Abajo: 0;
+      fondo: 
+        Gradiente radial (círculo al 20%20%, RGBA (212, 175, 55, 0.1) 0%, transparente 50%),
+        Gradiente radial (círculo al 80%80%, RGBA (212, 175, 55, 0.08) 0%, transparente 50%),
+        gradiente radial (círculo al 60%40%, RGBA (229, 228, 226, 0.05) 0%, transparente 50%);
+      Índice z: 0;
     }
     
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
+    .Container {
+      Posición: relativo;
+      índice z: 1;
+      Max-Width: 1200px;
+      margen: 0 auto;
+      relleno: 20px;
     }
     
-    /* Header */
+    / * Encabezado */
     .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 40px;
-      padding: 24px 32px;
-      background: var(--bg-card);
-      border: 2px solid var(--border-gold);
-      border-radius: 20px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      animation: fadeInDown 1s ease-out;
+      Pantalla: Flex;
+      Justify-Content: Space-between;
+      Alineación de ítems: Centro;
+      margen de fondo: 40px;
+      relleno: 20px 0;
+      Border-Bottom: 1px Solid Var (-Border-Gold);
     }
     
-    .brand-header {
-      display: flex;
-      align-items: center;
+    .BRAND-HEADER {
+      Pantalla: Flex;
+      Alineación de ítems: Centro;
     }
     
     .logo-icon {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark-gold));
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      margin-right: 16px;
-      box-shadow: 0 8px 32px var(--shadow-gold);
-      position: relative;
-      overflow: hidden;
+      Ancho: 48px;
+      Altura: 48px;
+      Antecedentes: gradiente lineal (135deg, var (-primario-oro), var (-primario-dark-oro));
+      Radio fronterizo: 16px;
+      Pantalla: Flex;
+      Alineación de ítems: Centro;
+      Justify-Content: Center;
+      tamaño de fuente: 24px;
+      margen-derecha: 16px;
+      Shadow de caja: 0 8px 32px var (-shadow-d-duard);
+      Posición: relativo;
+      desbordamiento: oculto;
     }
     
-    .logo-icon::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transform: rotate(45deg);
-      animation: shimmer 3s infinite;
+    .logo-icon :: antes {
+      contenido: '';
+      Posición: Absoluto;
+      arriba: -50%;
+      Izquierda: -50%;
+      Ancho: 200%;
+      Altura: 200%;
+      Antecedentes: gradiente lineal (45deg, transparente, RGBA (255, 255, 255, 0.1), transparente);
+      transformar: girar (45deg);
+      Animación: Shimmer 3s Infinite;
     }
     
-    @keyframes shimmer {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-      100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    @Keyframes Shimmer {
+      0%{Transform: traduceX (-100%) traduce (-100%) girado (45deg); }
+      50%{transformación: traducex (100%) traduce (100%) rotación (45deg); }
+      100%{Transform: traduceX (-100%) traduce (-100%) girado (45deg); }
     }
     
-    .brand-name {
-      font-size: 24px;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary-gold), var(--accent-platinum));
+    .BRAND-NAME {
+      tamaño de fuente: 24px;
+      Font-peso: 800;
+      Antecedentes: gradiente lineal (135deg, var (-primario-oro), var (-acent-platinum));
       -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin: 0;
+      Clip de fondo: texto;
+      -webkit-text-llena-color: transparente;
+      Texto-transformación: upcase;
+      Espaciado de letras: 1px;
+      margen: 0;
     }
     
     .user-info {
-      display: flex;
-      align-items: center;
-      gap: 16px;
+      Pantalla: Flex;
+      Alineación de ítems: Centro;
+      brecha: 16px;
     }
     
     .user-badge {
-      background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark-gold));
-      color: var(--bg-dark);
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      animation: slideIn 0.5s ease-out;
+      Antecedentes: gradiente lineal (135deg, var (-primario-oro), var (-primario-dark-oro));
+      color: var (-bg-dark);
+      relleno: 8px 16px;
+      Border-Radius: 20px;
+      tamaño de fuente: 12px;
+      Font-peso: 700;
+      Texto-transformación: upcase;
+      Espaciado de letras: 1px;
+      Pantalla: Flex;
+      Alineación de ítems: Centro;
+      Gap: 8px;
     }
     
-    @keyframes slideIn {
-      from { transform: translateX(20px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+    .gout-btn {
+      Antecedentes: RGBA (239, 68, 68, 0.1);
+      borde: 2px sólido #EF4444;
+      Color: #FCA5A5;
+      relleno: 12px 24px;
+      Border-Radius: 12px;
+      tamaño de fuente: 14px;
+      Font-peso: 600;
+      Texto-transformación: upcase;
+      Espaciado de letras: 1px;
+      cursor: puntero;
+      Transición: todos los 0.3 facilitados;
+      Pantalla: Flex;
+      Alineación de ítems: Centro;
+      Gap: 8px;
     }
     
-    .logout-btn {
-      background: linear-gradient(135deg, #ef4444, #dc2626);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .logout-btn: hover {
+      Antecedentes: RGBA (239, 68, 68, 0.2);
+      Transform: traduce (-2px);
+      Shadow de caja: 0 8px 25px RGBA (239, 68, 68, 0.3);
     }
     
-    .logout-btn:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+    / * Contenido del tablero */
+    .
+      Antecedentes: var (-bg-card);
+      borde: 2px Var sólido (-Border-Gold);
+      Border-Radius: 24px;
+      relleno: 40px;
+      margen de fondo: 32px;
+      Shadow de caja: 
+        0 25px 50px -12px rgba (0, 0, 0, 0.8),
+        0 0 0 1PX RGBA (212, 175, 55, 0.1),
+        recuadro 0 1PX 0 RGBA (255, 255, 255, 0.05);
+      Filtro de fondo: Blur (20px);
+      Posición: relativo;
+      Text-Align: Center;
+      Animación: FadeinUp 1S Fase-Out;
     }
     
-    .logout-btn:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-      transform: none;
+    .
+      contenido: '';
+      Posición: Absoluto;
+      arriba: 0;
+      Izquierda: 0;
+      Derecha: 0;
+      Altura: 1px;
+      Antecedentes: gradiente lineal (90deg, transparente, var (-dorado primario), transparente);
+      Opacidad: 0.6;
     }
     
-    /* Navigation */
-    .navigation {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 32px;
-      justify-content: center;
-    }
-    
-    .nav-btn {
-      background: var(--bg-card);
-      border: 2px solid var(--border-gold);
-      color: var(--text-light);
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    .nav-btn:hover {
-      border-color: var(--primary-gold);
-      background: rgba(212, 175, 55, 0.1);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Dashboard Content */
-    .welcome-section {
-      background: var(--bg-card);
-      border: 2px solid var(--border-gold);
-      border-radius: 24px;
-      padding: 40px;
-      margin-bottom: 32px;
-      box-shadow: 
-        0 25px 50px -12px rgba(0, 0, 0, 0.8),
-        0 0 0 1px rgba(212, 175, 55, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(20px);
-      position: relative;
-      text-align: center;
-      animation: fadeInUp 1s ease-out;
-    }
-    
-    .welcome-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
-      opacity: 0.6;
-    }
-    
-    .welcome-title {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, var(--primary-gold), var(--accent-platinum));
+    .
+      tamaño de fuente: 32px;
+      Font-peso: 700;
+      margen de fondo: 16px;
+      Antecedentes: gradiente lineal (135deg, var (-primario-oro), var (-acent-platinum));
       -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      Clip de fondo: texto;
+      -webkit-text-llena-color: transparente;
     }
     
-    .welcome-subtitle {
-      color: var(--text-muted);
-      font-size: 16px;
-      margin-bottom: 24px;
+    .
+      color: var (-muuido de texto);
+      tamaño de fuente: 16px;
+      Botón de margen: 24px;
     }
     
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin: 32px 0;
+    .Premium-Features {
+      Pantalla: cuadrícula;
+      Columna de plantilla de cuadrícula: repetir (Auto-Fit, Minmax (300px, 1fr));
+      Gap: 24px;
+      margen-top: 32px;
     }
     
-    .stat-card {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--border-gold);
-      border-radius: 16px;
-      padding: 24px;
-      text-align: center;
-      transition: all 0.3s ease;
+    .Feature-Card {
+      Antecedentes: var (-bg-card);
+      borde: 1px sólido var (-border-dorado);
+      Radio fronterizo: 16px;
+      relleno: 24px;
+      Transición: todos los 0.3 facilitados;
+      Posición: relativo;
+      desbordamiento: oculto;
     }
     
-    .stat-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--primary-gold);
-      background: rgba(212, 175, 55, 0.05);
+    .Feature-Card :: antes {
+      contenido: '';
+      Posición: Absoluto;
+      arriba: 0;
+      Izquierda: -100%;
+      Ancho: 100%;
+      Altura: 2px;
+      Antecedentes: gradiente lineal (90deg, transparente, var (-dorado primario), transparente);
+      Transición: Left 0.5s facilitan;
     }
     
-    .stat-value {
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--primary-gold);
-      margin-bottom: 8px;
+    .Feature-Card: Hover {
+      Transform: traduce (-5px);
+      color de borde: var (-dorado primario);
+      Shadow de caja: 0 15px 35px RGBA (212, 175, 55, 0.2);
     }
     
-    .stat-label {
-      font-size: 14px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .Feature-Card: Hover :: antes {
+      Izquierda: 100%;
     }
     
-    .premium-features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-      margin-top: 32px;
+    .Feature-icon {
+      tamaño de fuente: 32px;
+      margen de fondo: 16px;
+      Pantalla: bloque;
     }
     
-    .feature-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-gold);
-      border-radius: 16px;
-      padding: 24px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
+    .Feature-Title {
+      tamaño de fuente: 18px;
+      Font-peso: 600;
+      Botón de margen: 12px;
+      color: var (-texto-luz);
     }
     
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
-      transition: left 0.5s ease;
+    .Feature-Description {
+      color: var (-muuido de texto);
+      tamaño de fuente: 14px;
+      algodón de línea: 1.6;
     }
     
-    .feature-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--primary-gold);
-      box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
-    }
-    
-    .feature-card:hover::before {
-      left: 100%;
-    }
-    
-    .feature-icon {
-      font-size: 32px;
-      margin-bottom: 16px;
-      display: block;
-    }
-    
-    .feature-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--text-light);
-    }
-    
-    .feature-description {
-      color: var(--text-muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-    
-    .status-indicator {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid var(--success-green);
-      color: #6ee7b7;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 16px;
+    .Status-Indicator {
+      Pantalla: en línea-flex;
+      Alineación de ítems: Centro;
+      Gap: 8px;
+      Antecedentes: RGBA (16, 185, 129, 0.1);
+      borde: 1px sólido var (-éxito-verde);
+      Color: #6EE7B7;
+      relleno: 8px 16px;
+      Border-Radius: 20px;
+      tamaño de fuente: 12px;
+      Font-peso: 600;
+      Texto-transformación: upcase;
+      Espaciado de letras: 1px;
+      margen-top: 16px;
     }
     
     .status-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--success-green);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
+      Ancho: 8px;
+      Altura: 8px;
+      Antecedentes: var (-éxito-verde);
+      Radio fronterizo: 50%;
+      Animación: Pulse 2s Infinite;
     }
     
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+    @Keyframes Pulse {
+      0%, 100% {Opacidad: 1; }
+      50% {Opacidad: 0.5; }
     }
     
-    /* Notifications */
-    .notification {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 16px 20px;
-      border-radius: 12px;
-      font-weight: 600;
-      z-index: 1000;
-      min-width: 300px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(10px);
-      transform: translateX(100%);
-      opacity: 0;
-      transition: all 0.3s ease;
+    .mensaje {
+      margen-top: 20px;
+      relleno: 16px;
+      Border-Radius: 12px;
+      tamaño de fuente: 14px;
+      Font-peso: 500;
+      Text-Align: Center;
+      Min-altura: 20px;
     }
     
-    .notification.show {
-      transform: translateX(0);
-      opacity: 1;
+    .message.success {
+      Antecedentes: RGBA (16, 185, 129, 0.1);
+      borde: 1px sólido var (-éxito-verde);
+      Color: #6EE7B7;
     }
     
-    .notification.success {
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid var(--success-green);
-      color: #6ee7b7;
+    .message.error {
+      Antecedentes: RGBA (239, 68, 68, 0.1);
+      borde: 1px sólido var (-error-rojo);
+      Color: #FCA5A5;
     }
     
-    .notification.error {
-      background: rgba(239, 68, 68, 0.1);
-      border: 1px solid var(--error-red);
-      color: #fca5a5;
-    }
-    
-    .notification.info {
-      background: rgba(212, 175, 55, 0.1);
-      border: 1px solid var(--primary-gold);
-      color: var(--primary-gold);
-    }
-    
-    .loading-spinner {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-top: 2px solid white;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-right: 8px;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
+    @Keyframes FadeInup {
+      de {
+        Opacidad: 0;
+        transformar: traducido (30px);
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      a {
+        Opacidad: 1;
+        transformar: traducido (0);
       }
     }
     
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Modal */
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
-    }
-    
-    .modal.show {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .modal-content {
-      background: var(--bg-card);
-      border: 2px solid var(--border-gold);
-      border-radius: 16px;
-      padding: 32px;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-      transform: scale(0.8);
-      transition: transform 0.3s ease;
-    }
-    
-    .modal.show .modal-content {
-      transform: scale(1);
-    }
-    
-    .modal-title {
-      color: var(--text-light);
-      margin-bottom: 16px;
-      font-size: 20px;
-      font-weight: 700;
-    }
-    
-    .modal-message {
-      color: var(--text-muted);
-      margin-bottom: 24px;
-      line-height: 1.5;
-    }
-    
-    .modal-buttons {
-      display: flex;
-      gap: 12px;
-    }
-    
-    .modal-btn {
-      flex: 1;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .modal-btn-confirm {
-      background: var(--error-red);
-      color: white;
-    }
-    
-    .modal-btn-cancel {
-      background: #374151;
-      color: var(--text-light);
-    }
-    
-    .modal-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-    
-    @media (max-width: 768px) {
-      .container {
-        padding: 16px;
+    @Media (max-width: 768px) {
+      .Container {
+        relleno: 16px;
       }
+      
+      .header {
+        Dirección flexible: columna;
+        brecha: 16px;
+        Text-Align: Center;
+      }
+      
+      .user-info {
+        Dirección flexible: columna;
+        Ancho: 100%;
+      }
+      
+      .
+        relleno: 24px;
+      }
+      
+      .
+        tamaño de fuente: 24px;
+      }
+      
+      .Premium-Features {
+        Columna de plantilla de cuadrícula: 1fr;
+      }
+    }
+    
+    .Loading-spinner {
+      Pantalla: bloque en línea;
+      Ancho: 16px;
+      Altura: 16px;
+      borde: 2px sólido RGBA (255, 255, 255, 0.3);
+      Top de borde: 2px Solid #FCA5A5;
+      Radio fronterizo: 50%;
+      Animación: Spin 1S Lineal Infinite;
+      margen-derecha: 8px;
+    }
+    
+    @Keyframes Spin {
+      0% {transformar: rotate (0deg); }
+      100% {Transform: Rotate (360deg); }
+    }
+  </style>
+</ablo>
+<Body>
+  <div class = "Container">
+    <!-Header Con Botón de logrout->
+    <Header Class = "Header">
+      <div class = "Brand-Header">
+        <div class = "logo-icon"> 💎 </div>
+        <h1 class = "Brand-Name"> Premium Tasa </h1>
+      </div>
+      
+      <div class = "user-Info">
+        <div class = "user-badge">
+          ⭐ <span id = "username"> usuario premium </span>
+        </div>
+        <Button class = "logrout-btn" id = "logroutbtn">
+          🚪 Cerrar Sesión
+        </botón>
+      </div>
+    </Header>
+    
+    <!-Principal de contenido->
+    <Rain>
+      <div class = "Welcome-Section">
+        <H2 class = "Welcome-Title"> ¡Bienvenido al Portal Premium! </h2>
+        <P class = "Welcome-Subtitle">
+          Acedere Concedido. Disfruta de Todas las funcionalidades Dispositables premium.
+        </p>
+        
+        <div class = "Status-Indicator">
+          <span class = "status-dot"> </span>
+          Sesión Premium Activa
+        </div>
+        
+        <div class = "premium-fatuas">
+          <div class = "Feature-Card">
+            <span class = "característica-icon"> 📊 </span>
+            <h3 class = "característica"> analyticas avanzadas </h3>
+            <P class = "Feature-Description">
+              Accesso completa un informe detallados y Métricas en tiempo Real Exclusivas para Usuarios Premium.
+            </p>
+          </div>
+          
+          <div class = "Feature-Card">
+            <span class = "característica-icon"> 🎯 </span>
+            <h3 class = "Feature-Title"> Herramientas Exclusivas </h3>
+            <P class = "Feature-Description">
+              Utiliza Herramientas Avanzadas y Funciones y las que solo se encuentran disponibles en tu plan premium.
+            </p>
+          </div>
+          
+          <div class = "Feature-Card">
+            <span class = "característica-icon"> 🏆 </span>
+            <h3 class = "Feature-Title"> Soporte Prioritario </h3>
+            <P class = "Feature-Description">
+              Recibe Atención Personalizada y Soporte Técnico Prioritario Las 24 Horas del Día.
+            </p>
+          </div>
+          
+          <div class = "Feature-Card">
+            <span class = "característica-icon"> 🔒 </span>
+            <H3 class = "Feature-Title"> SeguriDad Premium </h3>
+            <P class = "Feature-Description">
+              Protección Avanzada de Datos y Caracteríssticas de Seguridad Exclusivas para Tu Tranquilidad.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class = "mensaje" id = "mensaje"> </div>
+    </main>
+  </div>
+
+  <script>
+    // Variables Globales
+    const logroutbtn = document.getElementById ('logroutbtn');
+    const Messagediv = document.getElementById ('Mensaje');
+    const useNamespan = document.getElementById ('UserName');
+    
+    // oyentes de eventos
+    logroutbtn.addeventListener ('hacer clic', handlelogout);
+    
+    // Verificar Sesión al Cargar la Página
+    document.adDeventListener ('DomContentLoaded', function () {
+      CheckSession ();
+      loadUserInfo ();
+    });
+    
+    // Verificar Si Hay Sesión Activa
+    function checkSession () {
+      const session = sessionStorage.getItem ('Premium_Rate_Session');
+      
+      if (! session) {
+        // No hay sesión, redirigir alicar
+        redirecttologin ();
+        devolver;
+      }
+      
+      intentar {
+        const sessionData = json.parse (sesión);
+        
+        // Verificar si la Sesión ha expirado
+        if (date.now ()> sessionData.exireSat) {
+          showMessage ('⏰ tu sesión ha expirado. Redirigido al login ...', 'error');
+          setTimeOut (() => {
+            ClearSession ();
+            redirecttologin ();
+          }, 2000);
+          devolver;
+        }
+        
+        // Sesión Válida
+        console.log ('✅ ✅ Sesión Premium Válida:', SessionData);
+        
+      } capt (error) {
+        console.error ('❌ Error al Verificar Sesión:', error);
+        redirecttologin ();
+      }
+    }
+    
+    // Cargar Información del Usuario
+    función loadUserInfo () {
+      const session = sessionStorage.getItem ('Premium_Rate_Session');
+      
+      if (session) {
+        intentar {
+          const sessionData = json.parse (sesión);
+          usernamespan.textContent = sessionData.usuario || 'Usuario Premium';
+        } capt (error) {
+          console.error ('Error al cargar info del usuario:', error);
+        }
+      }
+    }
+    
+    // Manejar LIGNOUT
+    function async handlelogout () {
+      intentar {
+        // Mostro Estado de Carga
+        setLogoutloading (verdadero);
+        
+        // Simular Proceso de logrout (en un Caso Real, Harías una Llamada Al Servidor)
+        espera simulatelogout ();
+        
+        // Mostrar Mensaje de éxito
+        showmessage ('👋 👋 👋 sesión cerrada correctamete. redirigiendo ...', 'éxito');
+        
+        // Esperar un Poco Antes de Redirigir para que el UsUario Vea el MensAJE
+        setTimeOut (() => {
+          ClearSession ();
+          redirecttologin ();
+        }, 1500);
+        
+      } capt (error) {
+        console.error ('Error al Cerrar Sesión:', error);
+        showMessage ('❌ Error al Cerrar Sesión. Intentando Nuevo ...', 'Error');
+        setlogoutloading (falso);
+        
+        // INTENTAR LIMPIAR SESIÓN DE TODAS FORMAS DESPUÉS DE ERROR
+        setTimeOut (() => {
+          ClearSession ();
+          redirecttologin ();
+        }, 3000);
+      }
+    }
+    
+    // Simular Proceso de Logrout
+    función simulatelogout () {
+      devuelve nueva promesa ((resolve) => {
+        // Simular Llamada al Servidor para Cerrar Sesión
+        setTimeOut (() => {
+          resolver();
+        }, 1000);
+      });
+    }
+    
+    // Limpiar Sesión
+    función ClearSession () {
+      intentar {
+        sessionStorage.RemoveItem ('Premium_Rate_Session');
+        
+        // Limpiar Cualquier Otra Información de Sesión Si Existe
+        sessionStorage.Clear ();
+        
+        console.log ('🧹 🧹 sesión limpiada corregueMe');
+      } capt (error) {
+        console.error ('Error al Limpiar Sesión:', error);
+      }
+    }
+    
+    // Redirigir al Iniciar sesión
+    función redirecttologin () {
+      // Cambiar por la ruta correcto de tu página de login
+      window.location.href = 'index.html';
+    }
+    
+    // MARTRAR MENSAJE
+    función showMessage (mensaje, type = 'error') {
+      Messagediv.TextContent = Mensaje;
+      Messagediv.ClassName = Message $ {type};
+      
+      // Auto-Limpiar Mensaje Después de 5 Segundos
+      setTimeOut (() => {
+        ClearMessage ();
+      }, 5000);
+    }
+    
+    // Limpiar Mensaje
+    función clearMessage () {
+      Messagediv.TextContent = '';
+      Messagediv.classname = 'Mensaje';
+    }
+    
+    // Estado de Carga para el Botón de logueut
+    función setlogoutloading (carga) {
+      if (carga) {
+        logOutbtn.innerhtml = '<span class = "Loading-Spinner"> </span> Cerrando Sesión ...';
+        logroutbtn.disable = true;
+        logroutbtn.style.opacity = '0.7';
+      } demás {
+        logOutbtn.innerhtml = '🚪 Cerrar Sesión';
+        logroutbtn.disable = false;
+        logroutbtn.style.opacity = '1';
+      }
+    }
+    
+    // Manejar Tecla Escape para logrout rápido
+    document.addeventListener ('keydown', function (evento) {
+      if (event.key === 'Escape' && Event.ctrlkey) {
+        if (confirmar ('' ¿Estás seguro que quieres cerrar la sesión? ')) {
+          handlelogout ();
+        }
+      }
+    });
+    
+    // Prevenir El Botón "Atrás" del navegador cuando no hay sesión
+    Window.adDeventListener ('Pageshow', function (Event) {
+      if (event.persisted) {
+        CheckSession ();
+      }
+    });
+    
+    // Verificar Sesión Periódicamento (Cadada 5 Minutos)
+    setInterval (CheckSession, 5 * 60 * 1000);
+  </script>
+</body>
+</html>
