@@ -1,616 +1,795 @@
-<! Doctype html>
-<html lang = "es">
-<Evista>
-  <meta charset = "utf-8">
-  <Meta name = "Viewport" content = "width = dispositivo-width, inicial-escala = 1.0">
-  <title> Premium Tasa - Dashboard Excusivo </title>
-  <Link rel = "icon" href = "datos: imagen/svg+xml, <svg xmlns = 'http: //www.w3.org/2000/svg' viewbox = '0 0 100 100'> <text y = '.
-  <estilo>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Rate - Acceso Exclusivo</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💎</text></svg>">
+  <style>
     * {
-      dimensionamiento de la caja: border-box;
+      box-sizing: border-box;
     }
     
-    :raíz {
-      --Primary-Gold: #D4AF37;
-      --Primary-Dark-Gold: #B8941F;
-      --Ccent-Platinum: #E5E4E2;
-      --BG-Dark: #0a0a0a;
+    :root {
+      --primary-gold: #d4af37;
+      --primary-dark-gold: #b8941f;
+      --accent-platinum: #e5e4e2;
+      --bg-dark: #0a0a0a;
       --bg-card: #1a1a1a;
-      --border-oro: #d4af3740;
-      --Text-Light: #F5F5F5;
-      --Text-MUTUD: #A1A1A1;
-      --Shadow-Gold: RGBA (212, 175, 55, 0.3);
-      --suCess-Green: #10b981;
-      --Error-Red: #EF4444;
+      --border-gold: #d4af3740;
+      --text-light: #f5f5f5;
+      --text-muted: #a1a1a1;
+      --shadow-gold: rgba(212, 175, 55, 0.3);
+      --success-color: #10b981;
+      --error-color: #ef4444;
     }
     
-    cuerpo {
-      Font-Family: 'SF Pro Display', -apple-System, BlinkMacSystemFont, 'Segoe UI', Roboto, Sans-Serif;
-      margen: 0;
-      relleno: 0;
-      Antecedentes: gradiente lineal (135deg, var (-bg-dark) 0%, #1a1a1a 50%, #0d1117 100%);
-      color: var (-texto-luz);
-      Min-altura: 100VH;
-      Posición: relativo;
-      desbordamiento-x: oculto;
+    body {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 50%, #0d1117 100%);
+      color: var(--text-light);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
     }
     
-    / * Efectos de Fondo Animados */
-    cuerpo :: antes {
-      contenido: '';
-      Posición: Absoluto;
-      arriba: 0;
-      Izquierda: 0;
-      Derecha: 0;
-      Abajo: 0;
-      fondo: 
-        Gradiente radial (círculo al 20%20%, RGBA (212, 175, 55, 0.1) 0%, transparente 50%),
-        Gradiente radial (círculo al 80%80%, RGBA (212, 175, 55, 0.08) 0%, transparente 50%),
-        gradiente radial (círculo al 60%40%, RGBA (229, 228, 226, 0.05) 0%, transparente 50%);
-      Índice z: 0;
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 60% 40%, rgba(229, 228, 226, 0.05) 0%, transparent 50%);
+      z-index: 0;
     }
     
-    .Container {
-      Posición: relativo;
-      índice z: 1;
-      Max-Width: 1200px;
-      margen: 0 auto;
-      relleno: 20px;
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
     }
     
-    / * Encabezado */
-    .header {
-      Pantalla: Flex;
-      Justify-Content: Space-between;
-      Alineación de ítems: Centro;
-      margen de fondo: 40px;
-      relleno: 20px 0;
-      Border-Bottom: 1px Solid Var (-Border-Gold);
+    .login-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 480px;
     }
     
-    .BRAND-HEADER {
-      Pantalla: Flex;
-      Alineación de ítems: Centro;
+    .brand-header {
+      text-align: center;
+      margin-bottom: 32px;
+      animation: fadeInUp 1s ease-out;
+    }
+    
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
     }
     
     .logo-icon {
-      Ancho: 48px;
-      Altura: 48px;
-      Antecedentes: gradiente lineal (135deg, var (-primario-oro), var (-primario-dark-oro));
-      Radio fronterizo: 16px;
-      Pantalla: Flex;
-      Alineación de ítems: Centro;
-      Justify-Content: Center;
-      tamaño de fuente: 24px;
-      margen-derecha: 16px;
-      Shadow de caja: 0 8px 32px var (-shadow-d-duard);
-      Posición: relativo;
-      desbordamiento: oculto;
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark-gold));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-right: 16px;
+      box-shadow: 0 8px 32px var(--shadow-gold);
+      position: relative;
+      overflow: hidden;
     }
     
-    .logo-icon :: antes {
-      contenido: '';
-      Posición: Absoluto;
-      arriba: -50%;
-      Izquierda: -50%;
-      Ancho: 200%;
-      Altura: 200%;
-      Antecedentes: gradiente lineal (45deg, transparente, RGBA (255, 255, 255, 0.1), transparente);
-      transformar: girar (45deg);
-      Animación: Shimmer 3s Infinite;
+    .logo-icon::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      animation: shimmer 3s infinite;
     }
     
-    @Keyframes Shimmer {
-      0%{Transform: traduceX (-100%) traduce (-100%) girado (45deg); }
-      50%{transformación: traducex (100%) traduce (100%) rotación (45deg); }
-      100%{Transform: traduceX (-100%) traduce (-100%) girado (45deg); }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+      100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
     }
     
-    .BRAND-NAME {
-      tamaño de fuente: 24px;
-      Font-peso: 800;
-      Antecedentes: gradiente lineal (135deg, var (-primario-oro), var (-acent-platinum));
+    .brand-name {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary-gold), var(--accent-platinum));
       -webkit-background-clip: text;
-      Clip de fondo: texto;
-      -webkit-text-llena-color: transparente;
-      Texto-transformación: upcase;
-      Espaciado de letras: 1px;
-      margen: 0;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 0;
     }
     
-    .user-info {
-      Pantalla: Flex;
-      Alineación de ítems: Centro;
-      brecha: 16px;
+    .brand-tagline {
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-top: 8px;
     }
     
-    .user-badge {
-      Antecedentes: gradiente lineal (135deg, var (-primario-oro), var (-primario-dark-oro));
-      color: var (-bg-dark);
-      relleno: 8px 16px;
-      Border-Radius: 20px;
-      tamaño de fuente: 12px;
-      Font-peso: 700;
-      Texto-transformación: upcase;
-      Espaciado de letras: 1px;
-      Pantalla: Flex;
-      Alineación de ítems: Centro;
-      Gap: 8px;
+    .login-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-gold);
+      border-radius: 24px;
+      padding: 40px;
+      width: 100%;
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(212, 175, 55, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      position: relative;
+      animation: fadeInUp 1s ease-out 0.3s both;
     }
     
-    .gout-btn {
-      Antecedentes: RGBA (239, 68, 68, 0.1);
-      borde: 2px sólido #EF4444;
-      Color: #FCA5A5;
-      relleno: 12px 24px;
-      Border-Radius: 12px;
-      tamaño de fuente: 14px;
-      Font-peso: 600;
-      Texto-transformación: upcase;
-      Espaciado de letras: 1px;
-      cursor: puntero;
-      Transición: todos los 0.3 facilitados;
-      Pantalla: Flex;
-      Alineación de ítems: Centro;
-      Gap: 8px;
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+      opacity: 0.6;
     }
     
-    .logout-btn: hover {
-      Antecedentes: RGBA (239, 68, 68, 0.2);
-      Transform: traduce (-2px);
-      Shadow de caja: 0 8px 25px RGBA (239, 68, 68, 0.3);
+    .login-title {
+      text-align: center;
+      margin: 0 0 8px;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-light);
     }
     
-    / * Contenido del tablero */
-    .
-      Antecedentes: var (-bg-card);
-      borde: 2px Var sólido (-Border-Gold);
-      Border-Radius: 24px;
-      relleno: 40px;
-      margen de fondo: 32px;
-      Shadow de caja: 
-        0 25px 50px -12px rgba (0, 0, 0, 0.8),
-        0 0 0 1PX RGBA (212, 175, 55, 0.1),
-        recuadro 0 1PX 0 RGBA (255, 255, 255, 0.05);
-      Filtro de fondo: Blur (20px);
-      Posición: relativo;
-      Text-Align: Center;
-      Animación: FadeinUp 1S Fase-Out;
+    .login-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      font-size: 15px;
     }
     
-    .
-      contenido: '';
-      Posición: Absoluto;
-      arriba: 0;
-      Izquierda: 0;
-      Derecha: 0;
-      Altura: 1px;
-      Antecedentes: gradiente lineal (90deg, transparente, var (-dorado primario), transparente);
-      Opacidad: 0.6;
+    .premium-badge {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark-gold));
+      color: var(--bg-dark);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px var(--shadow-gold);
     }
     
-    .
-      tamaño de fuente: 32px;
-      Font-peso: 700;
-      margen de fondo: 16px;
-      Antecedentes: gradiente lineal (135deg, var (-primario-oro), var (-acent-platinum));
-      -webkit-background-clip: text;
-      Clip de fondo: texto;
-      -webkit-text-llena-color: transparente;
+    .demo-info {
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 32px;
+      font-size: 14px;
+      text-align: center;
     }
     
-    .
-      color: var (-muuido de texto);
-      tamaño de fuente: 16px;
-      Botón de margen: 24px;
+    .demo-info code {
+      background: rgba(212, 175, 55, 0.2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      color: var(--primary-gold);
     }
     
-    .Premium-Features {
-      Pantalla: cuadrícula;
-      Columna de plantilla de cuadrícula: repetir (Auto-Fit, Minmax (300px, 1fr));
-      Gap: 24px;
-      margen-top: 32px;
+    .form-group {
+      margin-bottom: 24px;
     }
     
-    .Feature-Card {
-      Antecedentes: var (-bg-card);
-      borde: 1px sólido var (-border-dorado);
-      Radio fronterizo: 16px;
-      relleno: 24px;
-      Transición: todos los 0.3 facilitados;
-      Posición: relativo;
-      desbordamiento: oculto;
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-light);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     
-    .Feature-Card :: antes {
-      contenido: '';
-      Posición: Absoluto;
-      arriba: 0;
-      Izquierda: -100%;
-      Ancho: 100%;
-      Altura: 2px;
-      Antecedentes: gradiente lineal (90deg, transparente, var (-dorado primario), transparente);
-      Transición: Left 0.5s facilitan;
+    .input-container {
+      position: relative;
     }
     
-    .Feature-Card: Hover {
-      Transform: traduce (-5px);
-      color de borde: var (-dorado primario);
-      Shadow de caja: 0 15px 35px RGBA (212, 175, 55, 0.2);
+    .form-input {
+      width: 100%;
+      padding: 16px 20px;
+      border: 2px solid #333;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--text-light);
+      font-size: 16px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
     
-    .Feature-Card: Hover :: antes {
-      Izquierda: 100%;
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary-gold);
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+      background: rgba(0, 0, 0, 0.6);
     }
     
-    .Feature-icon {
-      tamaño de fuente: 32px;
-      margen de fondo: 16px;
-      Pantalla: bloque;
+    .form-input::placeholder {
+      color: var(--text-muted);
     }
     
-    .Feature-Title {
-      tamaño de fuente: 18px;
-      Font-peso: 600;
-      Botón de margen: 12px;
-      color: var (-texto-luz);
+    .form-input.error {
+      border-color: var(--error-color);
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
     }
     
-    .Feature-Description {
-      color: var (-muuido de texto);
-      tamaño de fuente: 14px;
-      algodón de línea: 1.6;
+    .password-toggle {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
     }
     
-    .Status-Indicator {
-      Pantalla: en línea-flex;
-      Alineación de ítems: Centro;
-      Gap: 8px;
-      Antecedentes: RGBA (16, 185, 129, 0.1);
-      borde: 1px sólido var (-éxito-verde);
-      Color: #6EE7B7;
-      relleno: 8px 16px;
-      Border-Radius: 20px;
-      tamaño de fuente: 12px;
-      Font-peso: 600;
-      Texto-transformación: upcase;
-      Espaciado de letras: 1px;
-      margen-top: 16px;
+    .password-toggle:hover {
+      color: var(--primary-gold);
+      background: rgba(212, 175, 55, 0.1);
     }
     
-    .status-dot {
-      Ancho: 8px;
-      Altura: 8px;
-      Antecedentes: var (-éxito-verde);
-      Radio fronterizo: 50%;
-      Animación: Pulse 2s Infinite;
+    .submit-btn {
+      width: 100%;
+      padding: 18px 32px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark-gold));
+      color: var(--bg-dark);
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 8px;
+      position: relative;
+      overflow: hidden;
     }
     
-    @Keyframes Pulse {
-      0%, 100% {Opacidad: 1; }
-      50% {Opacidad: 0.5; }
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
     }
     
-    .mensaje {
-      margen-top: 20px;
-      relleno: 16px;
-      Border-Radius: 12px;
-      tamaño de fuente: 14px;
-      Font-peso: 500;
-      Text-Align: Center;
-      Min-altura: 20px;
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px var(--shadow-gold);
     }
     
-    .message.success {
-      Antecedentes: RGBA (16, 185, 129, 0.1);
-      borde: 1px sólido var (-éxito-verde);
-      Color: #6EE7B7;
+    .submit-btn:hover:not(:disabled)::before {
+      left: 100%;
+    }
+    
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .message {
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      min-height: 20px;
+      transition: all 0.3s ease;
     }
     
     .message.error {
-      Antecedentes: RGBA (239, 68, 68, 0.1);
-      borde: 1px sólido var (-error-rojo);
-      Color: #FCA5A5;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid var(--error-color);
+      color: #fca5a5;
     }
     
-    @Keyframes FadeInup {
-      de {
-        Opacidad: 0;
-        transformar: traducido (30px);
+    .message.success {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--success-color);
+      color: #6ee7b7;
+    }
+    
+    .loading-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(0, 0, 0, 0.3);
+      border-top: 2px solid var(--bg-dark);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 8px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .password-strength {
+      margin-top: 12px;
+    }
+    
+    .strength-bar {
+      height: 4px;
+      background: #333;
+      border-radius: 2px;
+      margin: 8px 0;
+      overflow: hidden;
+    }
+    
+    .strength-fill {
+      height: 100%;
+      transition: all 0.4s ease;
+      border-radius: 2px;
+    }
+    
+    .strength-weak { background: var(--error-color); width: 25%; }
+    .strength-fair { background: #f59e0b; width: 50%; }
+    .strength-good { background: var(--success-color); width: 75%; }
+    .strength-strong { background: var(--primary-gold); width: 100%; }
+    
+    .strength-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .footer-links {
+      margin-top: 32px;
+      text-align: center;
+    }
+    
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      margin: 0 16px;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary-gold);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
       }
-      a {
-        Opacidad: 1;
-        transformar: traducido (0);
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
     
-    @Media (max-width: 768px) {
-      .Container {
-        relleno: 16px;
+    @media (max-width: 640px) {
+      .container {
+        padding: 16px;
       }
       
-      .header {
-        Dirección flexible: columna;
-        brecha: 16px;
-        Text-Align: Center;
+      .login-card {
+        padding: 32px 24px;
       }
       
-      .user-info {
-        Dirección flexible: columna;
-        Ancho: 100%;
+      .brand-name {
+        font-size: 28px;
       }
       
-      .
-        relleno: 24px;
+      .logo-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 28px;
       }
-      
-      .
-        tamaño de fuente: 24px;
-      }
-      
-      .Premium-Features {
-        Columna de plantilla de cuadrícula: 1fr;
-      }
-    }
-    
-    .Loading-spinner {
-      Pantalla: bloque en línea;
-      Ancho: 16px;
-      Altura: 16px;
-      borde: 2px sólido RGBA (255, 255, 255, 0.3);
-      Top de borde: 2px Solid #FCA5A5;
-      Radio fronterizo: 50%;
-      Animación: Spin 1S Lineal Infinite;
-      margen-derecha: 8px;
-    }
-    
-    @Keyframes Spin {
-      0% {transformar: rotate (0deg); }
-      100% {Transform: Rotate (360deg); }
     }
   </style>
-</ablo>
-<Body>
-  <div class = "Container">
-    <!-Header Con Botón de logrout->
-    <Header Class = "Header">
-      <div class = "Brand-Header">
-        <div class = "logo-icon"> 💎 </div>
-        <h1 class = "Brand-Name"> Premium Tasa </h1>
-      </div>
-      
-      <div class = "user-Info">
-        <div class = "user-badge">
-          ⭐ <span id = "username"> usuario premium </span>
-        </div>
-        <Button class = "logrout-btn" id = "logroutbtn">
-          🚪 Cerrar Sesión
-        </botón>
-      </div>
-    </Header>
-    
-    <!-Principal de contenido->
-    <Rain>
-      <div class = "Welcome-Section">
-        <H2 class = "Welcome-Title"> ¡Bienvenido al Portal Premium! </h2>
-        <P class = "Welcome-Subtitle">
-          Acedere Concedido. Disfruta de Todas las funcionalidades Dispositables premium.
-        </p>
-        
-        <div class = "Status-Indicator">
-          <span class = "status-dot"> </span>
-          Sesión Premium Activa
-        </div>
-        
-        <div class = "premium-fatuas">
-          <div class = "Feature-Card">
-            <span class = "característica-icon"> 📊 </span>
-            <h3 class = "característica"> analyticas avanzadas </h3>
-            <P class = "Feature-Description">
-              Accesso completa un informe detallados y Métricas en tiempo Real Exclusivas para Usuarios Premium.
-            </p>
-          </div>
-          
-          <div class = "Feature-Card">
-            <span class = "característica-icon"> 🎯 </span>
-            <h3 class = "Feature-Title"> Herramientas Exclusivas </h3>
-            <P class = "Feature-Description">
-              Utiliza Herramientas Avanzadas y Funciones y las que solo se encuentran disponibles en tu plan premium.
-            </p>
-          </div>
-          
-          <div class = "Feature-Card">
-            <span class = "característica-icon"> 🏆 </span>
-            <h3 class = "Feature-Title"> Soporte Prioritario </h3>
-            <P class = "Feature-Description">
-              Recibe Atención Personalizada y Soporte Técnico Prioritario Las 24 Horas del Día.
-            </p>
-          </div>
-          
-          <div class = "Feature-Card">
-            <span class = "característica-icon"> 🔒 </span>
-            <H3 class = "Feature-Title"> SeguriDad Premium </h3>
-            <P class = "Feature-Description">
-              Protección Avanzada de Datos y Caracteríssticas de Seguridad Exclusivas para Tu Tranquilidad.
-            </p>
+</head>
+<body>
+  <div class="container">
+    <div class="login-wrapper">
+      <div class="brand-header">
+        <div class="brand-logo">
+          <div class="logo-icon">💎</div>
+          <div>
+            <h1 class="brand-name">Premium Rate</h1>
+            <p class="brand-tagline">Exclusive Access Portal</p>
           </div>
         </div>
       </div>
       
-      <div class = "mensaje" id = "mensaje"> </div>
-    </main>
+      <div class="login-card">
+        <div style="text-align: center;">
+          <div class="premium-badge">
+            ⭐ Acceso Premium
+          </div>
+        </div>
+        
+        <h2 class="login-title">Bienvenido de vuelta</h2>
+        <p class="login-subtitle">Accede a tu cuenta premium para continuar</p>
+        
+        <div class="demo-info">
+          <strong>🚀 Demo Activa:</strong> Usa <code>josue</code> como usuario y cualquier contraseña con al menos 8 caracteres (debe incluir letras y números).
+        </div>
+        
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username" class="form-label">Usuario Premium</label>
+            <div class="input-container">
+              <input 
+                type="text" 
+                id="username" 
+                name="username"
+                class="form-input"
+                autocomplete="username" 
+                placeholder="Ingresa tu usuario premium"
+                required
+              />
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="password" class="form-label">Contraseña de Acceso</label>
+            <div class="input-container">
+              <input 
+                type="password" 
+                id="password" 
+                name="password"
+                class="form-input"
+                autocomplete="current-password" 
+                placeholder="Contraseña segura (mín. 8 caracteres)"
+                required
+              />
+              <button type="button" class="password-toggle" onclick="togglePassword()">
+                👁️
+              </button>
+            </div>
+            <div class="password-strength">
+              <div class="strength-bar">
+                <div class="strength-fill" id="strengthFill"></div>
+              </div>
+              <div class="strength-text" id="strengthText"></div>
+            </div>
+          </div>
+          
+          <button type="submit" class="submit-btn" id="submitBtn">
+            Acceder al Portal Premium
+          </button>
+        </form>
+        
+        <div class="message" id="message"></div>
+        
+        <div class="footer-links">
+          <a href="#" onclick="showComingSoon()">¿Olvidaste tu contraseña?</a>
+          <a href="#" onclick="showComingSoon()">Crear cuenta premium</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
-    // Variables Globales
-    const logroutbtn = document.getElementById ('logroutbtn');
-    const Messagediv = document.getElementById ('Mensaje');
-    const useNamespan = document.getElementById ('UserName');
+    // Variables globales
+    const form = document.getElementById('loginForm');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const submitBtn = document.getElementById('submitBtn');
+    const messageDiv = document.getElementById('message');
+    const strengthFill = document.getElementById('strengthFill');
+    const strengthText = document.getElementById('strengthText');
     
-    // oyentes de eventos
-    logroutbtn.addeventListener ('hacer clic', handlelogout);
+    // Event listeners
+    form.addEventListener('submit', handleLogin);
+    passwordInput.addEventListener('input', checkPasswordStrength);
     
-    // Verificar Sesión al Cargar la Página
-    document.adDeventListener ('DomContentLoaded', function () {
-      CheckSession ();
-      loadUserInfo ();
-    });
-    
-    // Verificar Si Hay Sesión Activa
-    function checkSession () {
-      const session = sessionStorage.getItem ('Premium_Rate_Session');
+    // Función principal de login
+    async function handleLogin(event) {
+      event.preventDefault();
       
-      if (! session) {
-        // No hay sesión, redirigir alicar
-        redirecttologin ();
-        devolver;
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value;
+      
+      // Limpiar mensajes previos
+      clearMessage();
+      clearErrors();
+      
+      // Validaciones
+      if (!validateForm(username, password)) {
+        return;
       }
       
-      intentar {
-        const sessionData = json.parse (sesión);
-        
-        // Verificar si la Sesión ha expirado
-        if (date.now ()> sessionData.exireSat) {
-          showMessage ('⏰ tu sesión ha expirado. Redirigido al login ...', 'error');
-          setTimeOut (() => {
-            ClearSession ();
-            redirecttologin ();
-          }, 2000);
-          devolver;
-        }
-        
-        // Sesión Válida
-        console.log ('✅ ✅ Sesión Premium Válida:', SessionData);
-        
-      } capt (error) {
-        console.error ('❌ Error al Verificar Sesión:', error);
-        redirecttologin ();
-      }
-    }
-    
-    // Cargar Información del Usuario
-    función loadUserInfo () {
-      const session = sessionStorage.getItem ('Premium_Rate_Session');
+      // Mostrar estado de carga
+      setLoading(true);
       
-      if (session) {
-        intentar {
-          const sessionData = json.parse (sesión);
-          usernamespan.textContent = sessionData.usuario || 'Usuario Premium';
-        } capt (error) {
-          console.error ('Error al cargar info del usuario:', error);
-        }
+      try {
+        // Simular proceso de autenticación premium
+        await simulateLogin(username, password);
+        
+        // Éxito
+        showMessage('🎉 ¡Acceso premium concedido! Redirigiendo al portal exclusivo...', 'success');
+        
+        // Guardar sesión premium en localStorage (persistente)
+        savePremiumSession(username);
+        
+        // Redireccionar después de un breve delay
+        setTimeout(() => {
+          // Cambiar a protegido.html en la misma ventana
+          window.location.replace('protegido.html');
+        }, 2000);
+        
+      } catch (error) {
+        showMessage(error.message, 'error');
+        setLoading(false);
       }
     }
     
-    // Manejar LIGNOUT
-    function async handlelogout () {
-      intentar {
-        // Mostro Estado de Carga
-        setLogoutloading (verdadero);
-        
-        // Simular Proceso de logrout (en un Caso Real, Harías una Llamada Al Servidor)
-        espera simulatelogout ();
-        
-        // Mostrar Mensaje de éxito
-        showmessage ('👋 👋 👋 sesión cerrada correctamete. redirigiendo ...', 'éxito');
-        
-        // Esperar un Poco Antes de Redirigir para que el UsUario Vea el MensAJE
-        setTimeOut (() => {
-          ClearSession ();
-          redirecttologin ();
+    // Validación del formulario
+    function validateForm(username, password) {
+      let isValid = true;
+      
+      if (username.length === 0) {
+        showError('username', '⚠️ Por favor ingresa tu usuario premium.');
+        isValid = false;
+      }
+      
+      if (password.length < 8) {
+        showError('password', '🔒 Tu contraseña premium debe tener al menos 8 caracteres.');
+        isValid = false;
+      }
+      
+      if (!/[a-zA-Z]/.test(password)) {
+        showError('password', '📝 La contraseña debe contener al menos una letra.');
+        isValid = false;
+      }
+      
+      if (!/\d/.test(password)) {
+        showError('password', '🔢 La contraseña debe contener al menos un número.');
+        isValid = false;
+      }
+      
+      return isValid;
+    }
+    
+    // Simulación de autenticación premium
+    function simulateLogin(username, password) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (username === 'josue' && password.length >= 8 && /[a-zA-Z]/.test(password) && /\d/.test(password)) {
+            resolve();
+          } else {
+            reject(new Error('🚫 Credenciales incorrectas. Verifica tu acceso premium.'));
+          }
         }, 1500);
-        
-      } capt (error) {
-        console.error ('Error al Cerrar Sesión:', error);
-        showMessage ('❌ Error al Cerrar Sesión. Intentando Nuevo ...', 'Error');
-        setlogoutloading (falso);
-        
-        // INTENTAR LIMPIAR SESIÓN DE TODAS FORMAS DESPUÉS DE ERROR
-        setTimeOut (() => {
-          ClearSession ();
-          redirecttologin ();
-        }, 3000);
-      }
-    }
-    
-    // Simular Proceso de Logrout
-    función simulatelogout () {
-      devuelve nueva promesa ((resolve) => {
-        // Simular Llamada al Servidor para Cerrar Sesión
-        setTimeOut (() => {
-          resolver();
-        }, 1000);
       });
     }
     
-    // Limpiar Sesión
-    función ClearSession () {
-      intentar {
-        sessionStorage.RemoveItem ('Premium_Rate_Session');
-        
-        // Limpiar Cualquier Otra Información de Sesión Si Existe
-        sessionStorage.Clear ();
-        
-        console.log ('🧹 🧹 sesión limpiada corregueMe');
-      } capt (error) {
-        console.error ('Error al Limpiar Sesión:', error);
-      }
-    }
-    
-    // Redirigir al Iniciar sesión
-    función redirecttologin () {
-      // Cambiar por la ruta correcto de tu página de login
-      window.location.href = 'index.html';
-    }
-    
-    // MARTRAR MENSAJE
-    función showMessage (mensaje, type = 'error') {
-      Messagediv.TextContent = Mensaje;
-      Messagediv.ClassName = Message $ {type};
+    // Guardar sesión premium en localStorage
+    function savePremiumSession(username) {
+      const premiumSession = {
+        usuario: username,
+        tipo: 'premium',
+        timestamp: Date.now(),
+        expiresAt: Date.now() + (24 * 60 * 60 * 1000), // 24 horas
+        features: ['premium-dashboard', 'advanced-analytics', 'priority-support']
+      };
       
-      // Auto-Limpiar Mensaje Después de 5 Segundos
-      setTimeOut (() => {
-        ClearMessage ();
-      }, 5000);
-    }
-    
-    // Limpiar Mensaje
-    función clearMessage () {
-      Messagediv.TextContent = '';
-      Messagediv.classname = 'Mensaje';
-    }
-    
-    // Estado de Carga para el Botón de logueut
-    función setlogoutloading (carga) {
-      if (carga) {
-        logOutbtn.innerhtml = '<span class = "Loading-Spinner"> </span> Cerrando Sesión ...';
-        logroutbtn.disable = true;
-        logroutbtn.style.opacity = '0.7';
-      } demás {
-        logOutbtn.innerhtml = '🚪 Cerrar Sesión';
-        logroutbtn.disable = false;
-        logroutbtn.style.opacity = '1';
+      try {
+        localStorage.setItem('premium_rate_session', JSON.stringify(premiumSession));
+        // También en sessionStorage como respaldo
+        sessionStorage.setItem('premium_rate_session', JSON.stringify(premiumSession));
+      } catch (error) {
+        console.error('Error al guardar la sesión:', error);
       }
     }
     
-    // Manejar Tecla Escape para logrout rápido
-    document.addeventListener ('keydown', function (evento) {
-      if (event.key === 'Escape' && Event.ctrlkey) {
-        if (confirmar ('' ¿Estás seguro que quieres cerrar la sesión? ')) {
-          handlelogout ();
+    // Verificar fortaleza de contraseña
+    function checkPasswordStrength() {
+      const password = passwordInput.value;
+      let strength = 0;
+      let strengthLabel = '';
+      
+      if (password.length >= 8) strength++;
+      if (/[a-z]/.test(password)) strength++;
+      if (/[A-Z]/.test(password)) strength++;
+      if (/\d/.test(password)) strength++;
+      if (/[^a-zA-Z\d]/.test(password)) strength++;
+      
+      // Actualizar visualización
+      strengthFill.className = 'strength-fill';
+      
+      if (password.length === 0) {
+        strengthLabel = '';
+      } else if (strength <= 2) {
+        strengthFill.classList.add('strength-weak');
+        strengthLabel = 'Seguridad Baja';
+      } else if (strength === 3) {
+        strengthFill.classList.add('strength-fair');
+        strengthLabel = 'Seguridad Media';
+      } else if (strength === 4) {
+        strengthFill.classList.add('strength-good');
+        strengthLabel = 'Seguridad Alta';
+      } else {
+        strengthFill.classList.add('strength-strong');
+        strengthLabel = 'Seguridad Premium';
+      }
+      
+      strengthText.textContent = strengthLabel;
+    }
+    
+    // Toggle visibilidad de contraseña
+    function togglePassword() {
+      const type = passwordInput.type === 'password' ? 'text' : 'password';
+      passwordInput.type = type;
+      
+      const button = document.querySelector('.password-toggle');
+      button.textContent = type === 'password' ? '👁️' : '🙈';
+    }
+    
+    // Mostrar mensaje "próximamente"
+    function showComingSoon() {
+      showMessage('🔜 Funcionalidad próximamente disponible en Premium Rate', 'error');
+      setTimeout(clearMessage, 3000);
+    }
+    
+    // Funciones de UI
+    function showMessage(message, type = 'error') {
+      messageDiv.textContent = message;
+      messageDiv.className = `message ${type}`;
+    }
+    
+    function clearMessage() {
+      messageDiv.textContent = '';
+      messageDiv.className = 'message';
+    }
+    
+    function showError(fieldId, message) {
+      const field = document.getElementById(fieldId);
+      field.classList.add('error');
+      showMessage(message, 'error');
+    }
+    
+    function clearErrors() {
+      usernameInput.classList.remove('error');
+      passwordInput.classList.remove('error');
+    }
+    
+    function setLoading(loading) {
+      if (loading) {
+        submitBtn.innerHTML = '<span class="loading-spinner"></span>Verificando acceso premium...';
+        submitBtn.disabled = true;
+      } else {
+        submitBtn.innerHTML = 'Acceder al Portal Premium';
+        submitBtn.disabled = false;
+      }
+    }
+    
+    // Función para mostrar notificaciones temporales
+    function showNotification(message, type) {
+      const notification = document.createElement('div');
+      notification.className = `message ${type}`;
+      notification.textContent = message;
+      notification.style.position = 'fixed';
+      notification.style.top = '20px';
+      notification.style.right = '20px';
+      notification.style.zIndex = '1000';
+      notification.style.minWidth = '300px';
+      notification.style.animation = 'slideInRight 0.3s ease-out';
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease-out';
+        setTimeout(() => {
+          if (document.body.contains(notification)) {
+            document.body.removeChild(notification);
+          }
+        }, 300);
+      }, 3000);
+    }
+    
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', function() {
+      // Verificar si ya hay una sesión activa
+      try {
+        const session = localStorage.getItem('premium_rate_session') || sessionStorage.getItem('premium_rate_session');
+        if (session) {
+          const sessionData = JSON.parse(session);
+          if (Date.now() < sessionData.expiresAt) {
+            showNotification('Ya tienes una sesión activa. Redirigiendo...', 'success');
+            setTimeout(() => {
+              window.location.replace('protegido.html');
+            }, 1500);
+            return;
+          } else {
+            // Sesión expirada, limpiar
+            localStorage.removeItem('premium_rate_session');
+            sessionStorage.removeItem('premium_rate_session');
+          }
         }
+      } catch (error) {
+        console.log('No hay sesión previa o error al verificar sesión');
       }
+      
+      usernameInput.focus();
+      
+      // Efecto de escritura en el título
+      const brandName = document.querySelector('.brand-name');
+      const originalText = brandName.textContent;
+      brandName.textContent = '';
+      
+      let i = 0;
+      const typeInterval = setInterval(() => {
+        brandName.textContent += originalText[i];
+        i++;
+        if (i >= originalText.length) {
+          clearInterval(typeInterval);
+        }
+      }, 100);
     });
     
-    // Prevenir El Botón "Atrás" del navegador cuando no hay sesión
-    Window.adDeventListener ('Pageshow', function (Event) {
-      if (event.persisted) {
-        CheckSession ();
+    // Agregar estilos para las animaciones de notificación
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideInRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
       }
-    });
-    
-    // Verificar Sesión Periódicamento (Cadada 5 Minutos)
-    setInterval (CheckSession, 5 * 60 * 1000);
+      
+      @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
